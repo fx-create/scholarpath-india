@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScholarPath India – Find Your Scholarship</title>
+<meta name="google-site-verification" content="dJ9obYWDPATqG0mzRSAAXWVSapVLYyaoJo1oQx_Sq9U" />
+<meta name="description" content="Find scholarships for Indian students — filter by education level, category, state, income, and field of study. 50+ scholarships updated for 2025-26.">
+<meta name="keywords" content="scholarship india, indian students scholarship, government scholarship, SC ST OBC scholarship, girl child scholarship, NSP scholarship 2025">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6B00;
+    --orange-light: #FF8C35;
+    --orange-pale: #FFF3E8;
+    --orange-mid: #FFD4AA;
+    --dark: #1A1200;
+    --text: #2D2000;
+    --muted: #7A6040;
+    --white: #FFFDF9;
+    --border: #F0E4D0;
+    --card-bg: #FFFAF4;
+    --green: #0B7740;
+    --blue: #1A4FAD;
+    --purple: #6B2FA0;
+    --shadow: 0 4px 24px rgba(255,107,0,0.08);
+    --shadow-hover: 0 8px 40px rgba(255,107,0,0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); min-height: 100vh; }
+
+  header { background: linear-gradient(135deg, #FF6B00 0%, #FF8C35 50%, #FFB347 100%); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(255,107,0,0.3); }
+  .header-inner { max-width: 1400px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .logo-icon { width: 38px; height: 38px; background: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .logo-text { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.35rem; color: white; line-height: 1; }
+  .logo-sub { font-size: 0.6rem; font-weight: 400; color: rgba(255,255,255,0.85); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-top: 2px; }
+  .search-wrap { flex: 1; min-width: 200px; max-width: 560px; position: relative; }
+  .search-wrap input { width: 100%; padding: 11px 20px 11px 46px; border-radius: 50px; border: none; background: rgba(255,255,255,0.95); font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text); outline: none; box-shadow: 0 2px 12px rgba(0,0,0,0.1); transition: box-shadow 0.2s; }
+  .search-wrap input:focus { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 16px; }
+  .header-stats { display: flex; gap: 16px; flex-shrink: 0; }
+  .stat-pill { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35); border-radius: 50px; padding: 6px 14px; color: white; font-size: 0.78rem; font-weight: 500; white-space: nowrap; }
+  .stat-pill strong { font-weight: 700; }
+
+  .notice-bar { background: #1a1200; color: #FFD4AA; padding: 9px 24px; text-align: center; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .notice-bar a { color: var(--orange); font-weight: 700; }
+
+  .mobile-filter-btn { display: none; align-items: center; gap: 8px; background: white; color: var(--orange); border: 2px solid var(--orange); padding: 10px 20px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin: 16px 16px 0; transition: all 0.2s; }
+  .mobile-filter-btn:hover { background: var(--orange); color: white; }
+
+  .layout { max-width: 1400px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+
+  .sidebar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; box-shadow: var(--shadow); }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--orange-mid); border-radius: 4px; }
+  .sidebar-header { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--card-bg); border-radius: 18px 18px 0 0; z-index: 2; }
+  .sidebar-title { font-weight: 700; font-size: 0.92rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .clear-btn { font-size: 0.76rem; color: var(--orange); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; padding: 4px 8px; border-radius: 6px; }
+  .clear-btn:hover { background: var(--orange-pale); }
+  .filter-group { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .filter-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .filter-label .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+  select { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 10px; background: white; font-family: 'DM Sans', sans-serif; font-size: 0.86rem; color: var(--text); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FF6B00' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; outline: none; transition: border-color 0.2s; }
+  select:focus { border-color: var(--orange); }
+  .checkbox-group { display: flex; flex-direction: column; gap: 7px; }
+  .checkbox-group label { display: flex; align-items: center; gap: 9px; cursor: pointer; font-size: 0.85rem; color: var(--text); padding: 5px 8px; border-radius: 8px; transition: background 0.15s; }
+  .checkbox-group label:hover { background: var(--orange-pale); }
+  .checkbox-group input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--orange); cursor: pointer; }
+
+  .results-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
+  .results-count { font-size: 0.88rem; color: var(--muted); }
+  .results-count strong { color: var(--orange); font-size: 1.1rem; font-weight: 700; }
+  .sort-wrap { display: flex; align-items: center; gap: 10px; }
+  .sort-wrap label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
+  .sort-wrap select { width: auto; padding: 7px 30px 7px 12px; font-size: 0.82rem; }
+  .active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .filter-tag { display: flex; align-items: center; gap: 6px; background: var(--orange-pale); border: 1px solid var(--orange-mid); color: var(--orange); padding: 5px 12px; border-radius: 50px; font-size: 0.78rem; font-weight: 600; }
+  .filter-tag button { background: none; border: none; cursor: pointer; color: var(--orange); font-size: 14px; line-height: 1; padding: 0; }
+
+  .status-legend { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; padding: 12px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; font-size: 0.78rem; color: var(--muted); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .ld-open { background: #1B6B30; } .ld-soon { background: #F57F17; } .ld-closed { background: #C62828; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 22px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; animation: fadeUp 0.3s ease both; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); border-color: var(--orange-mid); }
+  .card:hover::before { transform: scaleX(1); }
+  .card.is-closed { opacity: 0.6; }
+
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+  .provider-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+  .badge-govt { background: #E8F5E9; color: #1B6B30; } .badge-private { background: #E3F2FD; color: #1A4FAD; } .badge-ngo { background: #F3E5F5; color: #6B2FA0; }
+  .amount-badge { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: white; padding: 6px 12px; border-radius: 10px; font-size: 0.82rem; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 1.02rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.3; }
+  .status-chip { display: inline-block; padding: 2px 8px; border-radius: 50px; font-size: 0.67rem; font-weight: 800; margin-left: 7px; vertical-align: middle; letter-spacing: 0.04em; }
+  .chip-open { background: #E8F5E9; color: #1B6B30; } .chip-soon { background: #FFF8E1; color: #F57F17; } .chip-closed { background: #FFEBEE; color: #C62828; }
+  .card-eligibility { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+  .card-note { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .tag { background: var(--orange-pale); color: var(--orange); padding: 3px 9px; border-radius: 50px; font-size: 0.72rem; font-weight: 600; border: 1px solid var(--orange-mid); }
+  .tag.blue { background: #EBF2FF; color: var(--blue); border-color: #C3D7FF; }
+  .tag.green { background: #E8F5E9; color: var(--green); border-color: #B8DEC4; }
+  .tag.purple { background: #F3E5F5; color: var(--purple); border-color: #D4A8EE; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .deadline { font-size: 0.78rem; color: var(--muted); }
+  .deadline.urgent { color: #D32F2F; font-weight: 700; } .deadline.soon { color: #E65100; font-weight: 600; } .deadline.old { text-decoration: line-through; color: #bbb; }
+  .apply-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%); color: white; padding: 9px 18px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.2s; box-shadow: 0 3px 12px rgba(255,107,0,0.25); white-space: nowrap; }
+  .apply-btn:hover { transform: scale(1.04); box-shadow: 0 5px 20px rgba(255,107,0,0.4); }
+  .apply-btn.disabled { background: #ccc; box-shadow: none; pointer-events: none; color: #666; }
+
+  .no-results { grid-column: 1/-1; text-align: center; padding: 60px 30px; }
+  .no-results-icon { font-size: 64px; margin-bottom: 16px; }
+  .no-results h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: 10px; }
+  .no-results p { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; max-width: 360px; margin-left: auto; margin-right: auto; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 24px; }
+  .suggestion-pill { background: var(--orange-pale); color: var(--orange); padding: 8px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .suggestion-pill:hover { background: var(--orange); color: white; }
+  .reset-btn { background: var(--orange); color: white; border: none; padding: 11px 28px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; }
+
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 199; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .card:nth-child(1){animation-delay:.03s}.card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.09s}.card:nth-child(4){animation-delay:.12s}.card:nth-child(5){animation-delay:.15s}.card:nth-child(6){animation-delay:.18s}
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; padding: 16px; }
+    .sidebar { display: none; position: fixed; top: 0; left: 0; bottom: 0; width: 300px; z-index: 200; border-radius: 0 18px 18px 0; max-height: 100vh; }
+    .sidebar.open { display: block; }
+    .sidebar-overlay.open { display: block; }
+    .mobile-filter-btn { display: flex; }
+    .header-stats { display: none; }
+  }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .results-bar { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">🎓</div>
+      <div><div class="logo-text">ScholarPath</div><span class="logo-sub">India Scholarship Finder</span></div>
+    </a>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search scholarships by name, provider, field…">
+    </div>
+    <div class="header-stats">
+      <div class="stat-pill"><strong id="totalCount">50</strong> Scholarships</div>
+      <div class="stat-pill">Updated <strong>Feb 2026</strong></div>
+    </div>
+  </div>
+</header>
+
+<div class="notice-bar">
+  ⚠️ Always verify deadlines on the official site before applying — scholarship dates change yearly.&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://scholarships.gov.in" target="_blank">NSP Portal →</a>
+</div>
+
+<!-- TOP AD BANNER (AdSense placeholder) -->
+<div style="max-width:1400px;margin:16px auto;padding:0 24px;">
+  <div style="background:#f5f5f5;border:2px dashed #ddd;border-radius:12px;padding:20px;text-align:center;color:#aaa;font-size:0.82rem;min-height:90px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+    <!-- Replace this div with your Google AdSense code after approval -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <span style="font-size:18px;">📢</span>
+    <span>Advertisement</span>
+  </div>
+</div>
+
+<nav style="max-width:1400px;margin:0 auto;padding:0 24px 12px;display:flex;gap:20px;font-size:0.85rem;">
+  <a href="index.html" style="color:var(--orange);font-weight:700;text-decoration:none;">🏠 Home</a>
+  <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:500;">About Us</a>
+  <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:500;">Contact</a>
+  <a href="privacy.html" style="color:var(--muted);text-decoration:none;font-weight:500;">Privacy Policy</a>
+</nav>
+
+<button class="mobile-filter-btn" id="mobileFilterBtn">⚙️ Filters &amp; Categories</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title"><span>🗂️</span> Filters</div>
+      <button class="clear-btn" id="clearAll">Clear All</button>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> Education Level</div>
+      <select id="filterLevel">
+        <option value="">All Levels</option>
+        <option>Class 10</option><option>Class 12</option><option>Undergraduate</option><option>Postgraduate</option><option>PhD</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> Category</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="catCheck" value="General"> General</label>
+        <label><input type="checkbox" class="catCheck" value="OBC"> OBC</label>
+        <label><input type="checkbox" class="catCheck" value="SC"> SC</label>
+        <label><input type="checkbox" class="catCheck" value="ST"> ST</label>
+        <label><input type="checkbox" class="catCheck" value="Minority"> Minority</label>
+        <label><input type="checkbox" class="catCheck" value="Girl Child"> Girl Child</label>
+        <label><input type="checkbox" class="catCheck" value="Differently Abled"> Differently Abled</label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> State</div>
+      <select id="filterState">
+        <option value="">All States</option>
+        <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option>
+        <option>Chhattisgarh</option><option>Delhi</option><option>Goa</option><option>Gujarat</option>
+        <option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option>
+        <option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+        <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option>
+        <option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
+        <option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option>
+        <option>West Bengal</option><option>All India</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> Annual Family Income</div>
+      <select id="filterIncome">
+        <option value="">Any Income</option>
+        <option>Below 1L</option><option>1–3L</option><option>3–6L</option><option>Above 6L</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> Field of Study</div>
+      <select id="filterField">
+        <option value="">All Fields</option>
+        <option>Engineering</option><option>Medical</option><option>Arts</option><option>Commerce</option>
+        <option>Law</option><option>Science</option><option>Agriculture</option><option>Management</option><option>Any Field</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> Provider Type</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="provCheck" value="Government"> 🏛️ Government</label>
+        <label><input type="checkbox" class="provCheck" value="Private"> 🏢 Private</label>
+        <label><input type="checkbox" class="provCheck" value="NGO"> 🤝 NGO</label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label"><div class="dot"></div> Application Status</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="showOpen" checked> 🟢 Open Now</label>
+        <label><input type="checkbox" id="showSoon" checked> 🟡 Opening Soon</label>
+        <label><input type="checkbox" id="showClosed"> 🔴 Closed (2025-26)</label>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="results-bar">
+      <div class="results-count">Showing <strong id="countDisplay">50</strong> scholarships</div>
+      <div class="sort-wrap">
+        <label>Sort:</label>
+        <select id="sortSelect">
+          <option value="status">Status (Open First)</option>
+          <option value="deadline">Deadline (Soonest)</option>
+          <option value="amount">Amount (Highest)</option>
+          <option value="name">Name (A–Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="status-legend">
+      <span style="font-weight:600;color:var(--text)">Legend:</span>
+      <div class="legend-item"><div class="legend-dot ld-open"></div> Open – Apply now</div>
+      <div class="legend-item"><div class="legend-dot ld-soon"></div> Opening Soon (~Sep 2026)</div>
+      <div class="legend-item"><div class="legend-dot ld-closed"></div> Closed for 2025-26 (will reopen)</div>
+    </div>
+
+    <div class="active-filters" id="activeTags"></div>
+    <div class="grid" id="scholarshipGrid"></div>
+  </main>
+</div>
+
+<script>
+const TODAY = new Date('2026-02-21');
+
+const SCHOLARSHIPS = [
+  { id:1, name:"Tata Capital Pankh Scholarship Programme", provider:"Private", amount:12000, level:"Undergraduate", categories:["General","OBC","SC","ST","Girl Child","Differently Abled"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"Class 11-12, UG, Diploma, ITI students. Income ≤ ₹2.5 lakh. Min 60% in previous class.", deadline:"2026-02-15", url:"https://www.buddy4study.com/page/the-tata-capital-pankh-scholarship-programme", note:"Apply via Buddy4Study" },
+  { id:2, name:"HDFC Bank Parivartan ECSS (Undergraduate)", provider:"Private", amount:50000, level:"Undergraduate", categories:["General","OBC","SC","ST","Minority"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"UG students in professional courses. Income ≤ ₹2.5 lakh. Min 55%. Crisis-affected preferred.", deadline:"2025-12-31", url:"https://www.buddy4study.com/page/hdfc-bank-parivartans-ecss-programme", note:"Apply via Buddy4Study" },
+  { id:3, name:"HDFC Bank Parivartan ECSS (Postgraduate)", provider:"Private", amount:75000, level:"Postgraduate", categories:["General","OBC","SC","ST","Minority"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"PG students (general or professional). Income ≤ ₹2.5 lakh. Min 55%. Crisis-affected preferred.", deadline:"2025-12-31", url:"https://www.buddy4study.com/page/hdfc-bank-parivartans-ecss-programme", note:"Apply via Buddy4Study" },
+  { id:4, name:"NSP – Central Sector Scholarship (UG/PG)", provider:"Government", amount:20000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"Top Class 12 board exam students. Family income ≤ ₹4.5 lakh. Regular full-time courses only.", deadline:"2025-10-31", url:"https://scholarships.gov.in", note:"Apply at National Scholarship Portal" },
+  { id:5, name:"NSP – Post-Matric Scholarship (SC Students)", provider:"Government", amount:15000, level:"Undergraduate", categories:["SC"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"SC students in post-matric studies. Income ≤ ₹2.5 lakh. Apply at NSP portal.", deadline:"2025-10-31", url:"https://scholarships.gov.in", note:"Apply at NSP portal" },
+  { id:6, name:"NSP – Post-Matric Scholarship (OBC Students)", provider:"Government", amount:10000, level:"Undergraduate", categories:["OBC"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"OBC students in post-matric studies. Income ≤ ₹1 lakh. Apply at NSP portal.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:7, name:"NSP – Pre-Matric Scholarship (ST Students)", provider:"Government", amount:8500, level:"Class 10", categories:["ST"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"ST students in Class 9-10. Income ≤ ₹2 lakh per annum.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:8, name:"NSP – Pre-Matric Scholarship (OBC Students)", provider:"Government", amount:5000, level:"Class 10", categories:["OBC"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"OBC students Class 1-10. Income ≤ ₹1 lakh per annum.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:9, name:"Begum Hazrat Mahal National Scholarship", provider:"Government", amount:12000, level:"Class 12", categories:["Minority","Girl Child"], state:"All India", income:"1–3L", field:"Any Field", eligibility:"Minority girl students in Class 9-12. Income ≤ ₹2 lakh. Via MAEF portal.", deadline:"2025-10-31", url:"https://maef.nic.in" },
+  { id:10, name:"Maulana Azad National Fellowship", provider:"Government", amount:37000, level:"PhD", categories:["Minority"], state:"All India", income:"3–6L", field:"Any Field", eligibility:"Minority students pursuing M.Phil./PhD. Income ≤ ₹6 lakh. UGC administered.", deadline:"2025-10-31", url:"https://maef.nic.in" },
+  { id:11, name:"AICTE Pragati Scholarship (Girl Students)", provider:"Government", amount:50000, level:"Undergraduate", categories:["Girl Child"], state:"All India", income:"Below 1L", field:"Engineering", eligibility:"Girl students in AICTE-approved institutes. Income ≤ ₹8 lakh. 1st year UG/Diploma.", deadline:"2025-10-31", url:"https://scholarships.gov.in", note:"Apply via NSP portal" },
+  { id:12, name:"AICTE Saksham Scholarship (Differently Abled)", provider:"Government", amount:50000, level:"Undergraduate", categories:["Differently Abled"], state:"All India", income:"Below 1L", field:"Engineering", eligibility:"Differently abled students in AICTE-approved institutions. Income ≤ ₹8 lakh.", deadline:"2025-10-31", url:"https://scholarships.gov.in", note:"Apply via NSP portal" },
+  { id:13, name:"PM Scholarship Scheme – CAPF & RPF", provider:"Government", amount:36000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Any Field", eligibility:"Wards of Central Armed Police Forces & RPF martyrs/disabled personnel. Min 60% in Class 12.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:14, name:"Indira Gandhi Scholarship – Single Girl Child", provider:"Government", amount:36200, level:"Postgraduate", categories:["Girl Child"], state:"All India", income:"Any", field:"Any Field", eligibility:"Single girl child (no siblings) pursuing regular PG non-professional courses. Age below 30.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:15, name:"UGC – Single Girl Child PhD Fellowship", provider:"Government", amount:36000, level:"PhD", categories:["Girl Child"], state:"All India", income:"Any", field:"Any Field", eligibility:"Single girl child pursuing full-time PhD in UGC-recognized university. Age below 40.", deadline:"2025-09-30", url:"https://ugc.ac.in/ugc_schemes/" },
+  { id:16, name:"NMMS (National Means-cum-Merit Scholarship)", provider:"Government", amount:12000, level:"Class 10", categories:["General","OBC","SC","ST"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"Class 8 students. Income ≤ ₹3.5 lakh. State-level selection exam. For Class 9-12.", deadline:"2025-11-30", url:"https://scholarships.gov.in" },
+  { id:17, name:"INSPIRE Scholarship for Higher Education (SHE)", provider:"Government", amount:80000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Science", eligibility:"Top 1% in Class 12. Pursuing B.Sc./B.S./Int. M.Sc. in Natural/Basic Sciences. DST programme.", deadline:"2025-10-31", url:"https://online-inspire.gov.in", note:"Apply at DST portal" },
+  { id:18, name:"Swami Vivekananda Merit-cum-Means Scholarship (WB)", provider:"Government", amount:60000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"West Bengal", income:"1–3L", field:"Any Field", eligibility:"WB domicile students in UG/PG. Income ≤ ₹2.5 lakh. Min 75% in Class 12.", deadline:"2025-09-30", url:"https://svmcm.wbhed.gov.in" },
+  { id:19, name:"Ishan Uday Scholarship (North East Students)", provider:"Government", amount:54000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"Assam", income:"3–6L", field:"Any Field", eligibility:"Students from NE States in UG programs. Income ≤ ₹4.5 lakh. Via NSP portal.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:20, name:"Bihar Student Credit Card Scheme", provider:"Government", amount:400000, level:"Undergraduate", categories:["General","OBC","SC","ST","Minority"], state:"Bihar", income:"Any", field:"Any Field", eligibility:"Bihar residents, age below 25. Passed Class 12. UG/PG/PhD. 0% interest for girls.", deadline:"2025-12-31", url:"https://www.7nishchay-yuvaupmission.bihar.gov.in" },
+  { id:21, name:"Sitaram Jindal Foundation Scholarship", provider:"NGO", amount:36000, level:"Undergraduate", categories:["General","OBC","SC","ST","Minority"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"Meritorious students from poor families. Min 60% in last exam. Apply directly at foundation site.", deadline:"2025-12-31", url:"https://sjfoundation.org/scholarship.php" },
+  { id:22, name:"Narotam Sekhsaria Foundation Scholarship", provider:"NGO", amount:250000, level:"Postgraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Any Field", eligibility:"Students from premier institutes pursuing PG/professional courses. Highly competitive.", deadline:"2026-03-31", url:"https://nsfoundation.co.in/scholarships/", note:"Next cycle open now" },
+  { id:23, name:"JN Tata Endowment Loan Scholarship", provider:"NGO", amount:1000000, level:"Postgraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Any Field", eligibility:"Indian nationals for full-time Masters/PhD/Post-doc abroad. India's oldest scholarship (est. 1892).", deadline:"2026-03-23", url:"https://www.jntataendowment.org", note:"Apply by March 2026" },
+  { id:24, name:"Dhirubhai Ambani Foundation Scholarship", provider:"NGO", amount:30000, level:"Class 12", categories:["General","OBC","SC","ST"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"Students from rural areas in Class 11-12. Income ≤ ₹1.5 lakh.", deadline:"2025-06-30", url:"https://www.daf.org.in/scholarship" },
+  { id:25, name:"Reliance Foundation Undergraduate Scholarship", provider:"Private", amount:200000, level:"Undergraduate", categories:["General","OBC","SC","ST","Girl Child","Differently Abled"], state:"All India", income:"Above 6L", field:"Any Field", eligibility:"1st year UG students. Household income ≤ ₹15 lakh. Min 60% in Class 12. Aptitude test required.", deadline:"2025-10-04", url:"https://scholarships.reliancefoundation.org", note:"2025-26 closed. Reopens Aug 2026" },
+  { id:26, name:"Reliance Foundation Postgraduate Scholarship", provider:"Private", amount:600000, level:"Postgraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Engineering", eligibility:"1st year PG students in Engineering, AI, Life Sciences etc. GATE score or 7.5+ CGPA preferred.", deadline:"2025-10-04", url:"https://scholarships.reliancefoundation.org", note:"2025-26 closed. Reopens Aug 2026" },
+  { id:27, name:"Aditya Birla Capital Foundation Scholarship", provider:"Private", amount:60000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Engineering", eligibility:"IIT/NIT/BITS students. Selected from top engineering institutes. Merit-based.", deadline:"2025-07-31", url:"https://www.buddy4study.com/page/aditya-birla-capital-foundation-scholarship", note:"Reopens ~Jun 2026" },
+  { id:28, name:"ONGC Scholarship (SC/ST Engineering Students)", provider:"Government", amount:48000, level:"Undergraduate", categories:["SC","ST"], state:"All India", income:"1–3L", field:"Engineering", eligibility:"SC/ST students in 2nd year B.E./B.Tech. Income ≤ ₹2 lakh. Min 60% marks.", deadline:"2025-09-30", url:"https://ongcscholar.ongc.co.in" },
+  { id:29, name:"Rajasthan Gargi Puraskar Scheme", provider:"Government", amount:10000, level:"Class 12", categories:["General","OBC","SC","ST","Girl Child"], state:"Rajasthan", income:"Any", field:"Any Field", eligibility:"Girls scoring 75%+ in Class 10 board in Rajasthan. Studying in Class 11/12.", deadline:"2025-04-15", url:"https://rajshaladarpan.nic.in" },
+  { id:30, name:"Maharashtra Prerana Scholarship", provider:"Government", amount:25000, level:"Class 12", categories:["General","OBC","SC","ST"], state:"Maharashtra", income:"Below 1L", field:"Any Field", eligibility:"Class 10 toppers from Maharashtra. Pursuing Class 11-12. Income ≤ ₹1 lakh.", deadline:"2025-08-15", url:"https://mahadbt.maharashtra.gov.in" },
+  { id:31, name:"Karnataka Rajyotsava Scholarship", provider:"Government", amount:14000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"Karnataka", income:"Below 1L", field:"Any Field", eligibility:"Karnataka domicile students. Min 60% in previous exam. Pursuing UG programs.", deadline:"2025-08-31", url:"https://karepass.cgg.gov.in" },
+  { id:32, name:"Swami Dayanand Education Foundation Scholarship", provider:"NGO", amount:100000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"1–3L", field:"Engineering", eligibility:"UG professional course students. Income ≤ ₹5 lakh. Merit-cum-need.", deadline:"2025-08-31", url:"https://www.buddy4study.com/page/swami-dayanand-scholarship" },
+  { id:33, name:"SBI Youth for India Fellowship", provider:"Private", amount:180000, level:"Postgraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Any Field", eligibility:"Graduates under 28 years. Rural development vision. 13-month fellowship programme.", deadline:"2025-04-30", url:"https://www.sbiyouthforindia.com" },
+  { id:34, name:"Google Generation Scholarship (Women Techmakers)", provider:"Private", amount:75000, level:"Undergraduate", categories:["Girl Child"], state:"All India", income:"Any", field:"Engineering", eligibility:"Women in computer science/engineering programs. Strong academic record.", deadline:"2025-12-15", url:"https://buildyourfuture.withgoogle.com/scholarships", note:"Verify current cycle on Google site" },
+  { id:35, name:"Babasaheb Ambedkar Foundation Scholarship", provider:"Government", amount:25000, level:"Postgraduate", categories:["SC"], state:"All India", income:"1–3L", field:"Any Field", eligibility:"SC students scoring 60%+ in last qualifying exam. Pursuing PG in India or abroad.", deadline:"2025-09-30", url:"https://ambedkarfoundation.nic.in" },
+  { id:36, name:"Tamil Nadu CM's Scholarship (SC/ST First Generation)", provider:"Government", amount:24000, level:"Undergraduate", categories:["SC","ST"], state:"Tamil Nadu", income:"Below 1L", field:"Any Field", eligibility:"SC/ST first-generation college graduates from Tamil Nadu. Income ≤ ₹2 lakh.", deadline:"2025-09-30", url:"https://www.tnscholarship.in" },
+  { id:37, name:"Andhra Pradesh ePASS Scholarship", provider:"Government", amount:20000, level:"Undergraduate", categories:["OBC","SC","ST","Minority"], state:"Andhra Pradesh", income:"1–3L", field:"Any Field", eligibility:"AP domicile students. Category-wise eligibility and income criteria apply.", deadline:"2025-10-31", url:"https://apepass.cgg.gov.in" },
+  { id:38, name:"MP Medhavi Chhatra Scholarship", provider:"Government", amount:30000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"Madhya Pradesh", income:"3–6L", field:"Any Field", eligibility:"MP students scoring 70%+ in Class 12. Any UG/PG. Income ≤ ₹6 lakh.", deadline:"2025-08-31", url:"https://scholarshipportal.mp.nic.in" },
+  { id:39, name:"CSIR-UGC Junior Research Fellowship (NET)", provider:"Government", amount:37000, level:"PhD", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Science", eligibility:"Qualified CSIR-NET exam holders. JRF in basic sciences. Age ≤ 28 (Gen) / 33 (SC/ST/OBC).", deadline:"2025-09-30", url:"https://csirhrdg.res.in" },
+  { id:40, name:"Uttarakhand Post-Matric Scholarship (SC/OBC)", provider:"Government", amount:12000, level:"Undergraduate", categories:["SC","OBC"], state:"Uttarakhand", income:"Below 1L", field:"Any Field", eligibility:"SC/OBC students domiciled in Uttarakhand. Income ≤ ₹2 lakh.", deadline:"2025-10-31", url:"https://scholarship.uk.gov.in" },
+  { id:41, name:"Kerala Vanitha Commission Scholarship", provider:"Government", amount:15000, level:"Undergraduate", categories:["Girl Child"], state:"Kerala", income:"1–3L", field:"Any Field", eligibility:"Meritorious girl students in Kerala. Income ≤ ₹3 lakh. Pursuing UG degree.", deadline:"2025-07-31", url:"https://vanitha.kerala.gov.in" },
+  { id:42, name:"NEC Merit Scholarship – North East Council", provider:"Government", amount:24000, level:"Undergraduate", categories:["ST","General","SC","OBC"], state:"Assam", income:"1–3L", field:"Engineering", eligibility:"Students from NE states studying outside their home state. Min 60% marks.", deadline:"2025-10-31", url:"https://scholarships.gov.in" },
+  { id:43, name:"Wipro Earthian Sustainability Scholarship", provider:"Private", amount:50000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Science", eligibility:"UG students with sustainability projects. STEM background preferred. Project submission required.", deadline:"2025-11-30", url:"https://www.wipro.com/sustainability/wipro-earthian/" },
+  { id:44, name:"L'Oréal India For Young Women in Science", provider:"Private", amount:62500, level:"Postgraduate", categories:["Girl Child"], state:"All India", income:"Any", field:"Science", eligibility:"Women pursuing BSc/MSc/PhD in life sciences, chemistry, physics or mathematics. Exceptional merit.", deadline:"2025-09-30", url:"https://www.loreal.com/en/india/articles/solidarity/loreal-india-for-young-women-in-science-scholarships/" },
+  { id:45, name:"Gujarat Post-Matric Scholarship (SC Students)", provider:"Government", amount:18000, level:"Undergraduate", categories:["SC"], state:"Gujarat", income:"Below 1L", field:"Any Field", eligibility:"SC students domiciled in Gujarat. Income ≤ ₹2.5 lakh. Class 11 and above.", deadline:"2025-07-31", url:"https://esamajkalyan.gujarat.gov.in" },
+  { id:46, name:"Haryana State Merit Scholarship", provider:"Government", amount:18000, level:"Class 12", categories:["General","SC","OBC"], state:"Haryana", income:"Below 1L", field:"Any Field", eligibility:"Haryana students scoring 80%+ in Class 10 board. Income ≤ ₹2 lakh.", deadline:"2025-07-15", url:"https://haryana.gov.in/scholarship" },
+  { id:47, name:"ICICI Foundation Scholarship", provider:"Private", amount:100000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"1–3L", field:"Engineering", eligibility:"UG students in AICTE-approved institutes. Income ≤ ₹6 lakh. Min 85% in Class 12.", deadline:"2025-09-30", url:"https://www.icicifoundation.org/scholarships" },
+  { id:48, name:"ONGC Scholarship (SC/ST Engineering Students)", provider:"Government", amount:48000, level:"Undergraduate", categories:["SC","ST"], state:"All India", income:"1–3L", field:"Engineering", eligibility:"SC/ST students in 2nd year B.E./B.Tech. Income ≤ ₹2 lakh. Min 60% marks.", deadline:"2025-09-30", url:"https://ongcscholar.ongc.co.in" },
+  { id:49, name:"KVPY – Kishore Vaigyanik Protsahan Yojana", provider:"Government", amount:60000, level:"Undergraduate", categories:["General","OBC","SC","ST"], state:"All India", income:"Any", field:"Science", eligibility:"B.Sc./B.S./B.Math./B.Stat./Int. M.Sc. students in basic sciences. IISc-administered, merit-based.", deadline:"2025-10-31", url:"https://kvpy.iisc.ernet.in", status:"opening_soon", note:"Verify 2026-27 cycle on IISc site" },
+  { id:50, name:"PM Special Scholarship – J&K & Ladakh", provider:"Government", amount:30000, level:"Undergraduate", categories:["General","OBC","SC","ST","Minority"], state:"Delhi", income:"Any", field:"Any Field", eligibility:"Youth from J&K and Ladakh studying outside home state. 5000 scholarships per year. Via NSP.", deadline:"2025-10-31", url:"https://www.education.gov.in/en/scholarships-education-loan-0", status:"opening_soon", note:"Reopens ~Oct 2026 on NSP portal" }
+];
+
+function computeStatus(s) {
+  if (s.status === 'opening_soon') return 'opening_soon';
+  return new Date(s.deadline) >= TODAY ? 'open' : 'closed';
+}
+
+function getDaysLeft(d) { return Math.ceil((new Date(d) - TODAY)/(1000*60*60*24)); }
+function fmtDate(d) { return new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
+
+function deadlineText(s) {
+  const st = computeStatus(s);
+  if (st === 'opening_soon') return `🔔 ${s.note || 'Opens ~Sep-Oct 2026'}`;
+  const days = getDaysLeft(s.deadline);
+  if (days < 0) return `Closed: ${fmtDate(s.deadline)}`;
+  if (days === 0) return `🔥 Last day!`;
+  if (days < 15) return `🔥 ${days} days left`;
+  if (days < 45) return `⚡ ${days} days left`;
+  return `📅 Last date: ${fmtDate(s.deadline)}`;
+}
+
+function deadlineClass(s) {
+  const st = computeStatus(s);
+  if (st === 'closed') return 'old';
+  if (st === 'opening_soon') return '';
+  const days = getDaysLeft(s.deadline);
+  return days < 15 ? 'urgent' : days < 45 ? 'soon' : '';
+}
+
+function chipHtml(s) {
+  const st = computeStatus(s);
+  if (st === 'open') return '<span class="status-chip chip-open">● OPEN</span>';
+  if (st === 'opening_soon') return '<span class="status-chip chip-soon">● SOON</span>';
+  return '<span class="status-chip chip-closed">● CLOSED</span>';
+}
+
+function fmtAmt(a) { return a >= 100000 ? `₹${(a/100000).toFixed(a%100000===0?0:1)}L/yr` : `₹${a.toLocaleString('en-IN')}/yr`; }
+function provClass(p) { return {Government:'badge-govt',Private:'badge-private',NGO:'badge-ngo'}[p]||'badge-govt'; }
+function tagClass(c) { return ['SC','ST','OBC'].includes(c)?'green':['Girl Child','Minority','Differently Abled'].includes(c)?'blue':['Engineering','Medical','Science'].includes(c)?'purple':''; }
+
+function renderCard(s) {
+  const st = computeStatus(s);
+  const closed = st === 'closed';
+  return `<div class="card${closed?' is-closed':''}">
+    <div class="card-top">
+      <span class="provider-badge ${provClass(s.provider)}">${s.provider==='Government'?'🏛️':s.provider==='Private'?'🏢':'🤝'} ${s.provider}</span>
+      <span class="amount-badge">${fmtAmt(s.amount)}</span>
+    </div>
+    <div class="card-name">${s.name}${chipHtml(s)}</div>
+    <div class="card-eligibility">${s.eligibility}${s.note?` <span class="card-note">(${s.note})</span>`:''}</div>
+    <div class="card-tags">
+      <span class="tag">${s.level}</span>
+      ${s.categories.slice(0,3).map(c=>`<span class="tag ${tagClass(c)}">${c}</span>`).join('')}
+      <span class="tag purple">${s.field}</span>
+      ${s.state!=='All India'?`<span class="tag blue">📍 ${s.state}</span>`:''}
+    </div>
+    <div class="card-footer">
+      <span class="deadline ${deadlineClass(s)}">${deadlineText(s)}</span>
+      <a href="${s.url}" target="_blank" rel="noopener" class="apply-btn${closed?' disabled':''}">${st==='opening_soon'?'Check Portal ↗':closed?'Closed':'Apply Now ↗'}</a>
+    </div>
+  </div>`;
+}
+
+const grid = document.getElementById('scholarshipGrid');
+const countDisplay = document.getElementById('countDisplay');
+const activeTags = document.getElementById('activeTags');
+document.getElementById('totalCount').textContent = SCHOLARSHIPS.length;
+
+function applyFilters() {
+  const search = document.getElementById('searchInput').value.toLowerCase().trim();
+  const level = document.getElementById('filterLevel').value;
+  const state = document.getElementById('filterState').value;
+  const income = document.getElementById('filterIncome').value;
+  const field = document.getElementById('filterField').value;
+  const cats = [...document.querySelectorAll('.catCheck:checked')].map(c=>c.value);
+  const provs = [...document.querySelectorAll('.provCheck:checked')].map(c=>c.value);
+  const incOpen = document.getElementById('showOpen').checked;
+  const incSoon = document.getElementById('showSoon').checked;
+  const incClosed = document.getElementById('showClosed').checked;
+  const sortBy = document.getElementById('sortSelect').value;
+
+  // Dedupe by id before filtering
+  const unique = SCHOLARSHIPS.filter((s,i,a)=>a.findIndex(x=>x.id===s.id)===i);
+
+  let data = unique.filter(s => {
+    const st = computeStatus(s);
+    if (st==='open'&&!incOpen) return false;
+    if (st==='opening_soon'&&!incSoon) return false;
+    if (st==='closed'&&!incClosed) return false;
+    if (search && !s.name.toLowerCase().includes(search) && !s.eligibility.toLowerCase().includes(search) && !s.provider.toLowerCase().includes(search)) return false;
+    if (level && s.level!==level) return false;
+    if (state && s.state!==state && s.state!=='All India') return false;
+    if (income && s.income!=='Any' && s.income!==income) return false;
+    if (field && s.field!=='Any Field' && s.field!==field) return false;
+    if (cats.length && !cats.some(c=>s.categories.includes(c))) return false;
+    if (provs.length && !provs.includes(s.provider)) return false;
+    return true;
+  });
+
+  const stOrd = {open:0,opening_soon:1,closed:2};
+  if (sortBy==='status') data.sort((a,b)=>(stOrd[computeStatus(a)]-stOrd[computeStatus(b)])||(new Date(a.deadline)-new Date(b.deadline)));
+  else if (sortBy==='deadline') data.sort((a,b)=>new Date(a.deadline)-new Date(b.deadline));
+  else if (sortBy==='amount') data.sort((a,b)=>b.amount-a.amount);
+  else data.sort((a,b)=>a.name.localeCompare(b.name));
+
+  countDisplay.textContent = data.length;
+  grid.innerHTML = data.length ? data.map(renderCard).join('') : `<div class="no-results"><div class="no-results-icon">🔍</div><h3>No scholarships found</h3><p>Try broadening your search or removing some filters.</p><div class="suggestions"><button class="suggestion-pill" onclick="quickFilter('Undergraduate')">Try Undergraduate</button><button class="suggestion-pill" onclick="quickFilter('')">All India</button><button class="suggestion-pill" onclick="clearFilters()">Clear Filters</button></div><button class="reset-btn" onclick="clearFilters()">🔄 Reset All</button></div>`;
+
+  // Active tags
+  const tags=[];
+  if(level) tags.push({label:level,clear:()=>{document.getElementById('filterLevel').value='';applyFilters();}});
+  if(state) tags.push({label:state,clear:()=>{document.getElementById('filterState').value='';applyFilters();}});
+  if(income) tags.push({label:income+' income',clear:()=>{document.getElementById('filterIncome').value='';applyFilters();}});
+  if(field) tags.push({label:field,clear:()=>{document.getElementById('filterField').value='';applyFilters();}});
+  cats.forEach(c=>tags.push({label:c,clear:()=>{document.querySelector(`.catCheck[value="${c}"]`).checked=false;applyFilters();}}));
+  provs.forEach(p=>tags.push({label:p,clear:()=>{document.querySelector(`.provCheck[value="${p}"]`).checked=false;applyFilters();}}));
+  activeTags.innerHTML = tags.map(t=>`<span class="filter-tag">${t.label}<button>✕</button></span>`).join('');
+  activeTags.querySelectorAll('.filter-tag button').forEach((btn,i)=>btn.onclick=tags[i].clear);
+}
+
+function quickFilter(val) {
+  if(['Undergraduate','Postgraduate','Class 10','Class 12','PhD'].includes(val)) document.getElementById('filterLevel').value=val;
+  else document.getElementById('filterState').value=val;
+  applyFilters();
+}
+
+function clearFilters() {
+  ['filterLevel','filterState','filterIncome','filterField','searchInput'].forEach(id=>document.getElementById(id).value='');
+  document.querySelectorAll('.catCheck,.provCheck').forEach(c=>c.checked=false);
+  document.getElementById('showOpen').checked=true;
+  document.getElementById('showSoon').checked=true;
+  document.getElementById('showClosed').checked=false;
+  applyFilters();
+}
+
+document.getElementById('clearAll').addEventListener('click', clearFilters);
+['searchInput','filterLevel','filterState','filterIncome','filterField','sortSelect','showOpen','showSoon','showClosed'].forEach(id=>{ const el=document.getElementById(id); el.addEventListener('change',applyFilters); if(id==='searchInput') el.addEventListener('input',applyFilters); });
+document.querySelectorAll('.catCheck,.provCheck').forEach(c=>c.addEventListener('change',applyFilters));
+
+const sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebarOverlay');
+document.getElementById('mobileFilterBtn').addEventListener('click',()=>{sidebar.classList.toggle('open');overlay.classList.toggle('open');});
+overlay.addEventListener('click',()=>{sidebar.classList.remove('open');overlay.classList.remove('open');});
+
+applyFilters();
+</script>
+<!-- BOTTOM AD BANNER (AdSense placeholder) -->
+<div style="max-width:1400px;margin:24px auto;padding:0 24px;">
+  <div style="background:#f5f5f5;border:2px dashed #ddd;border-radius:12px;padding:20px;text-align:center;color:#aaa;font-size:0.82rem;min-height:90px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+    <!-- Replace this div with your Google AdSense code after approval -->
+    <span style="font-size:18px;">📢</span>
+    <span>Advertisement</span>
+  </div>
+</div>
+
+<footer style="background:#1a1200;color:#FFD4AA;padding:32px 24px;margin-top:40px;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:white;margin-bottom:8px;">🎓 ScholarPath India</div>
+        <div style="font-size:0.82rem;color:#FFD4AA;max-width:280px;line-height:1.6;">Helping Indian students discover scholarships they deserve. Free forever.</div>
+      </div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FF8C35;margin-bottom:10px;">Pages</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="index.html" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">🏠 Home</a>
+            <a href="about.html" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">ℹ️ About Us</a>
+            <a href="contact.html" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">✉️ Contact</a>
+            <a href="privacy.html" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">🔒 Privacy Policy</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FF8C35;margin-bottom:10px;">Official Portals</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://scholarships.gov.in" target="_blank" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">📋 NSP Portal</a>
+            <a href="https://buddy4study.com" target="_blank" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">📚 Buddy4Study</a>
+            <a href="https://ugc.ac.in" target="_blank" style="color:#FFD4AA;text-decoration:none;font-size:0.85rem;">🏛️ UGC India</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:0.75rem;color:rgba(255,212,170,0.6);">
+      <span>© 2026 ScholarPath India. All rights reserved.</span>
+      <span>⚠️ We are not affiliated with any government body. Always verify on official sites.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – ScholarPath India</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --orange:#FF6B00; --orange-light:#FF8C35; --orange-pale:#FFF3E8; --orange-mid:#FFD4AA; --dark:#1A1200; --text:#2D2000; --muted:#7A6040; --white:#FFFDF9; --border:#F0E4D0; --card-bg:#FFFAF4; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--text); }
+  header { background:linear-gradient(135deg,#FF6B00 0%,#FF8C35 50%,#FFB347 100%); padding:14px 24px; box-shadow:0 2px 20px rgba(255,107,0,0.3); }
+  .header-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; gap:16px; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-icon { width:38px; height:38px; background:white; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .logo-text { font-family:'Playfair Display',serif; font-weight:900; font-size:1.35rem; color:white; }
+  nav { max-width:1000px; margin:16px auto 0; padding:0 24px 12px; display:flex; gap:20px; font-size:0.85rem; }
+  nav a { color:var(--orange); font-weight:600; text-decoration:none; }
+  nav a.muted { color:var(--muted); font-weight:500; }
+  .container { max-width:800px; margin:48px auto; padding:0 24px; }
+  .hero { text-align:center; margin-bottom:48px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--dark); margin-bottom:16px; }
+  .hero p { font-size:1.05rem; color:var(--muted); line-height:1.7; max-width:580px; margin:0 auto; }
+  .section { margin-bottom:40px; }
+  .section h2 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--dark); margin-bottom:14px; padding-bottom:10px; border-bottom:2px solid var(--orange-pale); }
+  .section p { font-size:0.95rem; color:var(--muted); line-height:1.8; margin-bottom:12px; }
+  .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:40px 0; }
+  .stat-card { background:var(--card-bg); border:1px solid var(--border); border-radius:16px; padding:24px; text-align:center; }
+  .stat-number { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:var(--orange); }
+  .stat-label { font-size:0.82rem; color:var(--muted); margin-top:4px; }
+  .mission-box { background:linear-gradient(135deg,var(--orange) 0%,var(--orange-light) 100%); border-radius:20px; padding:32px; color:white; margin:40px 0; text-align:center; }
+  .mission-box h2 { font-family:'Playfair Display',serif; font-size:1.6rem; margin-bottom:12px; }
+  .mission-box p { font-size:0.95rem; line-height:1.7; opacity:0.92; }
+  footer { background:#1a1200; color:#FFD4AA; padding:32px 24px; margin-top:60px; text-align:center; font-size:0.82rem; }
+  footer a { color:var(--orange); text-decoration:none; margin:0 10px; }
+  @media(max-width:600px){ .stats-grid{grid-template-columns:1fr;} .hero h1{font-size:1.8rem;} }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">ScholarPath India</div>
+    </a>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html" style="color:var(--orange);font-weight:700;">About Us</a>
+  <a href="contact.html" class="muted">Contact</a>
+  <a href="privacy.html" class="muted">Privacy Policy</a>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>About ScholarPath India</h1>
+    <p>We believe every Indian student deserves access to financial support — regardless of where they come from or how much their family earns.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Scholarships Listed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">₹0</div>
+      <div class="stat-label">Cost to Use</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">29+</div>
+      <div class="stat-label">States Covered</div>
+    </div>
+  </div>
+
+  <div class="mission-box">
+    <h2>🇮🇳 Our Mission</h2>
+    <p>To make scholarship discovery simple, free, and accessible for every Indian student — from Class 10 to PhD — across all states, categories, and fields of study.</p>
+  </div>
+
+  <div class="section">
+    <h2>What is ScholarPath India?</h2>
+    <p>ScholarPath India is a free scholarship discovery platform built specifically for Indian students. We aggregate government, private, and NGO scholarships into one easy-to-use platform so students don't have to spend hours searching across multiple websites.</p>
+    <p>Our smart filters let you find scholarships that match your exact profile — your education level, caste category, state, family income, and field of study — in seconds.</p>
+  </div>
+
+  <div class="section">
+    <h2>Why We Built This</h2>
+    <p>Millions of Indian students miss out on scholarships every year — not because they're ineligible, but because they simply don't know the scholarships exist or find out too late. Scholarship information is scattered across dozens of government portals, NGO websites, and private company pages.</p>
+    <p>ScholarPath India brings all of this into one place, with real-time status tracking so you always know what's open, what's closing soon, and what's coming up next cycle.</p>
+  </div>
+
+  <div class="section">
+    <h2>How We Keep Data Accurate</h2>
+    <p>Our scholarship data is sourced directly from official government portals (including scholarships.gov.in), official NGO and private company websites, and verified third-party scholarship aggregators like Buddy4Study.</p>
+    <p>We update our database regularly. However, scholarship deadlines and amounts can change — we always recommend verifying on the official scholarship portal before applying. Each scholarship card has a direct link to the official application page.</p>
+  </div>
+
+  <div class="section">
+    <h2>Disclaimer</h2>
+    <p>ScholarPath India is an independent information platform. We are not affiliated with, endorsed by, or connected to any government body, ministry, NGO, or private company listed on this site. All scholarship information is provided for informational purposes only. Always verify details on official websites before applying.</p>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:12px;">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+  © 2026 ScholarPath India. All rights reserved.
+</footer>
+</body>
+</html>
