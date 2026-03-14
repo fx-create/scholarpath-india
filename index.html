@@ -321,7 +321,7 @@
       <div class="checkbox-group">
         <label><input type="checkbox" id="showOpen" checked> 🟢 Open Now</label>
         <label><input type="checkbox" id="showSoon" checked> 🟡 Opening Soon</label>
-        <label><input type="checkbox" id="showClosed"> 🔴 Closed (2025-26)</label>
+        <label><input type="checkbox" id="showClosed" checked> 🔴 Closed (2025-26)</label>
       </div>
     </div>
   </aside>
@@ -353,7 +353,7 @@
 </div>
 
 <script>
-const TODAY = new Date('2026-02-21');
+const TODAY = new Date();
 
 const SCHOLARSHIPS = [
   { id:1, name:"Tata Capital Pankh Scholarship Programme", provider:"Private", amount:12000, level:"Undergraduate", categories:["General","OBC","SC","ST","Girl Child","Differently Abled"], state:"All India", income:"Below 1L", field:"Any Field", eligibility:"Class 11-12, UG, Diploma, ITI students. Income ≤ ₹2.5 lakh. Min 60% in previous class.", deadline:"2026-02-15", url:"https://www.buddy4study.com/page/the-tata-capital-pankh-scholarship-programme", note:"Apply via Buddy4Study" },
@@ -565,7 +565,7 @@ function clearFilters() {
   document.querySelectorAll('.catCheck,.provCheck').forEach(c=>c.checked=false);
   document.getElementById('showOpen').checked=true;
   document.getElementById('showSoon').checked=true;
-  document.getElementById('showClosed').checked=false;
+  document.getElementById('showClosed').checked=true;
   applyFilters();
 }
 
